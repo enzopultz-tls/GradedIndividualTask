@@ -4,9 +4,9 @@ Projeto desenvolvido em Java para a atividade **Da Modelagem à Implementação 
 
 ## Integrantes
 
-- Nome: ______________________________________
-- Turma: _____________________________________
-- Professor(a): _______________________________
+- Nome: Enzo Barbosa Pultz
+- Turma: TSI 2 Módulo
+- Professor(a): Gaio
 
 ---
 
