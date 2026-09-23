@@ -1,0 +1,4 @@
+1. Extraia a pasta GradedIndividualTask.
+2. Coloque a pasta dentro do seu repositório GitHub.
+3. Faça git add, git commit e git push.
+4. Antes de entregar, preencha nome, turma e professor no README.md.

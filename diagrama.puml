@@ -1,0 +1,85 @@
+@startuml
+title Sistema de Vendas da Cantina Escolar
+
+class Produto {
+    - codigo : int
+    - nome : String
+    - categoria : String
+    - preco : double
+    - quantidadeEstoque : int
+    - ativo : boolean
+    --
+    + Produto(codigo, nome, categoria, preco, quantidadeEstoque)
+    + getCodigo() : int
+    + getNome() : String
+    + getCategoria() : String
+    + getPreco() : double
+    + getQuantidadeEstoque() : int
+    + isAtivo() : boolean
+    + setNome(nome)
+    + setCategoria(categoria)
+    + setPreco(preco)
+    + temEstoque(quantidade) : boolean
+    + adicionarEstoque(quantidade)
+    + removerEstoque(quantidade)
+    + removerDoCardapio()
+    + reativarNoCardapio()
+}
+
+class ItemPedido {
+    - produto : Produto
+    - quantidade : int
+    --
+    + ItemPedido(produto, quantidade)
+    + getProduto() : Produto
+    + getQuantidade() : int
+    + setQuantidade(quantidade)
+    + calcularSubtotal() : double
+}
+
+class Pedido {
+    - itens : List<ItemPedido>
+    - dataHora : LocalDateTime
+    - pagamento : Pagamento
+    - finalizado : boolean
+    --
+    + Pedido()
+    + adicionarItem(produto, quantidade)
+    + calcularTotal() : double
+    + possuiItens() : boolean
+    + estoqueSuficiente() : boolean
+    + podeFinalizar() : boolean
+    + realizarPagamento(pagamento)
+    + finalizar()
+    + getItens() : List<ItemPedido>
+    + getDataHora() : LocalDateTime
+    + getPagamento() : Pagamento
+    + isFinalizado() : boolean
+    + gerarComprovante() : String
+}
+
+class Pagamento {
+    - tipo : TipoPagamento
+    - valorPago : double
+    --
+    + Pagamento(tipo, valorPago)
+    + getTipo() : TipoPagamento
+    + getValorPago() : double
+    + setValorPago(valorPago)
+    + pagamentoSuficiente(totalPedido) : boolean
+    + calcularTroco(totalPedido) : double
+}
+
+enum TipoPagamento {
+    DINHEIRO
+    PIX
+    CREDITO
+    DEBITO
+}
+
+Pedido "1" *-- "1..*" ItemPedido : possui
+ItemPedido "*" --> "1" Produto : produto
+Pedido "1" --> "0..1" Pagamento : pagamento
+Pagamento --> TipoPagamento
+
+@enduml
